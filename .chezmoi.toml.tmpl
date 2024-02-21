@@ -1,0 +1,11 @@
+{{- $choices := list "desktop" "laptop" "server" -}}
+{{- $hosttype := promptChoiceOnce . "hosttype" "What type of host are you on" $choices -}}
+
+encryption = "age"
+[age]
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = "age17s3t5dln9xt08u0uzkt7fjf7wgeq36zn9ryc2yz0qaxsmv9ghgnqf4s6lr"
+
+[data]
+    email = "kevetduncombe@gmail.com"
+    hosttype = {{ $hosttype | quote }}

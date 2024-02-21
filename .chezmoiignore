@@ -1,0 +1,10 @@
+key.txt.age
+{{- if eq .hosttype "server" }}
+.local/bin/editserverd
+.local/bin/psg
+.local/bin/pwdfor
+.local/bin/twikiize
+.local/bin/unspace
+.local/share
+.local/share/konsole
+{{- end }}
