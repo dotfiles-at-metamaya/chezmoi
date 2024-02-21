@@ -1,0 +1,75 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# Set some preferences
+export CDPATH=".:$DUNC/src/finance:$DUNC/src:/usr/local/www:$DUNC:$DUNC/Documents:$DUNC/Export:$DU
+export VISUAL='nvim'    
+export EDITOR='nvim'    
+export EXINIT=':set ts=4 sw=4 ai nows'    
+export PAGER='less -e'    
+export MANPAGER=less      
+export BLOCKSIZE="M"      
+export CVSIGNORE='.git/'    
+export NO_COLOR=exactly
+export PGHOST=localhost
+{{ if eq .hosttype "desktop" "laptop" }}
+export KEVETSCHWAB='Kevet-RothIRA.ofx Kevet-SchwabIRA.ofx Kevet-InheritedIRA.ofx Kevet-SchwabOne.ofx
+export SANDYSCHWAB='Sandy-SchwabIRA.ofx Sandy-SchwabOne.ofx Sandy-InheritedIRA.ofx Sandy-InheritedRo
+export SCHWABOFX="$KEVETSCHWAB $SANDYSCHWAB"
+export SCHWABPDF="`echo $SCHWABOFX | sed 's/ofx/pdf/g'`"
+export SCHWABCSV="`echo $SCHWABOFX | sed 's/ofx/csv/g'`"
+{{ end }}
+
+alias h='fc -l'    
+alias history='fc -l'    
+alias ls='ls -F'
+{{ if eq .hosttype "desktop" "laptop" }}
+{{ end }}
+
+resource () {   #FIXME
+    . /etc/profile
+    case $( ps -o comm $$ ) in
+    bash) . ~/.bashrc;;
+    *)    . ~/.shrc;;
+    esac
+}
+
+HOST=$(hostname -s); export HOST
+SIGL='$'
+[ "$(id -u)" = 0 ] && SIGL='#'
+{{ if eq .chezmoi.os "freebsd" }}
+PS1="${VIRTUAL_ENV_PROMPT:-}"'\u@\h:\w\$ '
+{{ else }}
+PS1="${VIRTUAL_ENV_PROMPT:-}$USER@$HOST$SIGL "
+{{ end }}
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+    PS1="${VIRTUAL_ENV_PROMPT:-}"'\u@\h:\w\$ '
+fi
+
+# add title string to prompt if we have fancy title bars
+#case "$TERM" in
+#    xterm*|rxvt*) PS1="$TS1$PS1";;
+#esac
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
