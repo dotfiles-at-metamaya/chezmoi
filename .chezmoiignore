@@ -1,4 +1,5 @@
 key.txt.age
+.gnupg/random_seed
 {{- if eq .hosttype "server" }}
 .local/bin/editserverd
 .local/bin/psg
