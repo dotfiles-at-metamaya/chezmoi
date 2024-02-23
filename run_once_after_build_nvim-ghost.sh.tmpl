@@ -1,0 +1,8 @@
+#!/bin/sh
+if ! [ -d ~/.local/share/nvim/lazy ; then
+	mkdir -p ~/.local/share/nvim/lazy
+fi
+if ! [ -d ~/.local/share/nvim/lazy/nvim-ghost.nvim ]; then
+    git clone https://github.com/subnut/nvim-ghost.nvim ~/.local/share/nvim/lazy/nvim-ghost.nvim
+fi
+python3 -m pip install --user -r ~/.local/share/nvim/lazy/nvim-ghost.nvim/requirements.txt
