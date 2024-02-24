@@ -1,0 +1,9 @@
+#!/bin/sh
+{{ if eq .hosttype "desktop" "laptop" }}
+    {{ if eq .chezmoi.os "freebsd" }}
+        sudo pkg install p5-Crypt-Bcrypt p5-Digest-Bcrypt
+    {{ end }}
+    {{ if eq .chezmoi.os "linux" }}
+        sudo apt install libcrypt-bcrypt-perl libdigest-bcrypt-perl
+    {{ end }}
+{{ end }}
