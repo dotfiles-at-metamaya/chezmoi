@@ -9,3 +9,6 @@ key.txt.age
 .local/share
 .local/share/konsole
 {{- end }}
+{{- if ne .chezmoi.os "freebsd" }}
+run_once_after_build_nvim-ghost.sh
+{{- end }}
