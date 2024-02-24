@@ -9,7 +9,6 @@
 #umask 022
 
 # Set some preferences
-export CDPATH=".:$DUNC/src/finance:$DUNC/src:/usr/local/www:$DUNC:$DUNC/Documents:$DUNC/Export:$DU
 export VISUAL='nvim'    
 export EDITOR='nvim'    
 export EXINIT=':set ts=4 sw=4 ai nows'    
@@ -20,8 +19,9 @@ export CVSIGNORE='.git/'
 export NO_COLOR=exactly
 export PGHOST=localhost
 {{ if eq .hosttype "desktop" "laptop" }}
-export KEVETSCHWAB='Kevet-RothIRA.ofx Kevet-SchwabIRA.ofx Kevet-InheritedIRA.ofx Kevet-SchwabOne.ofx
-export SANDYSCHWAB='Sandy-SchwabIRA.ofx Sandy-SchwabOne.ofx Sandy-InheritedIRA.ofx Sandy-InheritedRo
+export CDPATH=".:/home/dunc/src/finance:/home/dunc/src:/home/dunc/Export:/home/dunc/Export/Misc:/home/dunc/Textarch:~/Documents:~/Desktop"
+export KEVETSCHWAB="Kevet-RothIRA.ofx Kevet-SchwabIRA.ofx Kevet-InheritedIRA.ofx Kevet-SchwabOne.ofx Kevet-PledgedAsset.ofx"
+export SANDYSCHWAB="Sandy-SchwabIRA.ofx Sandy-SchwabOne.ofx Sandy-InheritedIRA.ofx Sandy-InheritedRoth.ofx Sandy-SchwabTaxable.ofx"
 export SCHWABOFX="$KEVETSCHWAB $SANDYSCHWAB"
 export SCHWABPDF="`echo $SCHWABOFX | sed 's/ofx/pdf/g'`"
 export SCHWABCSV="`echo $SCHWABOFX | sed 's/ofx/csv/g'`"
