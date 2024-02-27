@@ -1,9 +1,19 @@
 #!/bin/sh
 {{ if eq .hosttype "desktop" "laptop" }}
     {{ if eq .chezmoi.os "freebsd" }}
-        sudo pkg install p5-Crypt-Bcrypt p5-Digest-Bcrypt
+        if ! pkg info p5-Crypt-Bcrypt > /dev/null; then
+            sudo pkg install p5-Crypt-Bcrypt
+        fi
+        if ! pkg info p5-Digest-Bcrypt > /dev/null; then
+            sudo pkg install p5-Digest-Bcrypt
+        fi
     {{ end }}
     {{ if eq .chezmoi.os "linux" }}
-        sudo apt install libcrypt-bcrypt-perl libdigest-bcrypt-perl
+        if ! dpkg-query -l | grep -q libcrypt-bcrypt-perl; then
+            sudo apt install libcrypt-bcrypt-perl
+        fi
+        if ! dpkg-query -l | grep -q libdigest-bcrypt-perl; then
+            sudo apt install libdigest-bcrypt-perl
+        fi
     {{ end }}
 {{ end }}
