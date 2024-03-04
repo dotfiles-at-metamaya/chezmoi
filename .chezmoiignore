@@ -4,6 +4,7 @@ key.txt.age
 .local/bin/editserverd
 .local/bin/psg
 .local/bin/pwdfor
+.local/bin/tw
 .local/bin/twikiize
 .local/bin/unspace
 .local/share
